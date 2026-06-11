@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.agent_memory_core/
+*.sqlite3
+*.db
+benchmark_results.json
+benchmark_report.md
+dist/
+build/
+
+USER_ACCEPTANCE_REPORT.md

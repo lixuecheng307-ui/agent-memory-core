@@ -1,0 +1,4 @@
+services:
+  agent-memory-core:
+    build: .
+    command: memory-core benchmark

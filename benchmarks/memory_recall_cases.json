@@ -1,0 +1,37 @@
+[
+  {
+    "name": "preference_recall",
+    "project_id": "project_a",
+    "memories": [
+      {"project_id": "project_a", "content": "用户偏好：回答要短、直接。", "type": "preference"},
+      {"project_id": "project_b", "content": "另一个项目偏好：回答要长。", "type": "preference"},
+      {"project_id": "global", "scope": "global", "content": "全局偏好：不要编造。", "type": "preference"}
+    ],
+    "query": "回答风格",
+    "expected_contains": "短、直接",
+    "forbidden_contains": "回答要长"
+  },
+  {
+    "name": "disabled_deleted_filter",
+    "project_id": "project_a",
+    "memories": [
+      {"project_id": "project_a", "content": "保留记忆：项目使用 SQLite。", "type": "project"},
+      {"project_id": "project_a", "content": "禁用记忆：项目使用 Redis。", "type": "project", "disable": true},
+      {"project_id": "project_a", "content": "删除记忆：项目使用 MySQL。", "type": "project", "delete": true}
+    ],
+    "query": "项目使用什么存储",
+    "expected_contains": "SQLite",
+    "forbidden_contains": "Redis"
+  },
+  {
+    "name": "sensitive_not_injected",
+    "project_id": "project_a",
+    "memories": [
+      {"project_id": "project_a", "content": "OPENAI API Key 是 example-sensitive-placeholder", "type": "long_term"},
+      {"project_id": "project_a", "content": "安全规则：凭证类秘密值不要保存。", "type": "safety"}
+    ],
+    "query": "凭证安全规则是什么",
+    "expected_contains": "秘密值不要保存",
+    "forbidden_contains": "example-sensitive-placeholder"
+  }
+]

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-memory-core"
+version = "0.1.0"
+description = "Lightweight, local, project-isolated, auditable memory core for AI agents."
+requires-python = ">=3.10"
+authors = [{ name = "Agent Memory Core Contributors" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.optional-dependencies]
+chroma = ["chromadb"]
+web = ["streamlit"]
+mcp = ["mcp"]
+
+[project.scripts]
+memory-core = "memory_core.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["memory_core*", "benchmarks*", "integrations*"]
+exclude = ["tests*", "memory", "memory.*", "core", "core.*", "ui*", "browser*", "operator_kernel*"]
+
+[tool.setuptools.package-data]
+benchmarks = ["*.json", "*.md"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
